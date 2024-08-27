@@ -6,11 +6,11 @@ import { ChatComponent } from './pages/chat/chat.component';
 
 
 export const routes: Routes = [
-    { path: 'class', component: ClassComponent },
+    { path: 'class/:id', component: ClassComponent },
     { path: 'level', component: LevelComponent },
-    { path: 'chat', component: ChatComponent },
-    { path: '', redirectTo: '/class', pathMatch: 'full' },  // Default route
-    { path: '**', redirectTo: '/class', pathMatch: 'full' } 
+    { path: 'chat/:id', component: ChatComponent },
+    { path: '', redirectTo: '/level', pathMatch: 'full' },  // Default route
+    { path: '**', redirectTo: '/level', pathMatch: 'full' } 
 ];
 
 

@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 })
 export class ClassService {
   
-  private apiUrl = 'http://127.0.0.1:8085/classes';
+  private apiUrl = 'http://127.0.0.1:8086/classes';
 
   constructor(private http: HttpClient) { }
 
-  getClassData(): Observable<any> {
-    return this.http.get(this.apiUrl);
+  getClassData(id: string | null ): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${id}`);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClassService } from '../../services/class.service';
 import { NgFor } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 
 @Component({
@@ -16,15 +16,22 @@ import { RouterLink } from '@angular/router';
 export class ClassComponent {
 
   classData: any;
+  classId: string | null = null;
 
-  constructor(private classService: ClassService) { }
+  constructor(
+    private classService: ClassService,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
-    this.classService.getClassData().subscribe(data => {
-      this.classData = data;
-      console.log(this.classData);
-    }, error => {
-      console.error('Error fetching data', error);
+    this.route.paramMap.subscribe(params => {
+      this.classId = params.get('id');
+      this.classService.getClassData(this.classId).subscribe(data => {
+        this.classData = data;
+        console.log(this.classData);
+      }, error => {
+        console.error('Error fetching data', error);
+      });
     });
   }
 }
